@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+		<title>首頁</title>
+	</head>
+	<body>
+		<div style="font-size: 40px;text-align:center">九九乘法表練習</div>
+		<div style="font-size: 40px;text-align:center">作者:小李</div>
+		<br>
+	</body>
+	<script type="text/javascript">
+		var firstNum = new Array(10);
+		var secondNum = new Array(10);
+		for(var i=0; i<10; i++){
+			firstNum[i] = getRandomInt(9)+1;
+			secondNum[i] = getRandomInt(9)+1;
+			console.log(firstNum[i]+","+secondNum[i]);		
+		}
+		
+		for(var i=0; i<10; i++){
+			document.write("<div style='text-align:center;font-size:24px;margin-Bottom:10px;'>"
+			+"("+(i+1)+")&nbsp&nbsp&nbsp&nbsp"+
+			+firstNum[i]+"&nbsp&nbsp×&nbsp&nbsp"
+			+secondNum[i] + "&nbsp&nbsp=&nbsp&nbsp"
+			+"<input  class='input' type='text' style='width:35px;height:30px;font-size:16px;text-align:center;'/>"
+			+"</div>");
+		}
+		
+		document.write("<div style='text-align:center;'><input type='button' value='按我交卷' id='score'/></div>");
+		
+		
+		
+		const score = document.getElementById('score');
+		
+		var count = 0;    //計數器
+		var num1 = 0;
+		var num2 = 0;
+		var inputArray = document.getElementsByClassName('input');
+		
+		
+		score.addEventListener('click',
+		function(e){
+			for(var i=0; i<10; i++){
+				if(firstNum[i]*secondNum[i] == inputArray[i].value){
+					count += 10;
+				}
+			}
+		  
+			console.log("You get : "+count+" score.");
+		
+			var hint = window.prompt("You get : " + count + " score !!!\nplease enter 0 restart, thank you.");
+			if(hint == 0){
+				window.location.reload();
+			}
+			 
+			 /*  console.log(e.currentTarget)
+			  console.log(e.target)
+			  console.log(e.type)
+			  console.log(e.bubbles)
+			  console.log(e.cancelable)
+			  e.stopPropagation() */
+		},false);
+		
+		
+		function getRandomInt(max) {
+			return Math.floor(Math.random() * max);
+		}
+			
+	</script>
+</html>
